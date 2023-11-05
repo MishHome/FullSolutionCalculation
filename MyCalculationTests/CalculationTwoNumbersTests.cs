@@ -116,7 +116,7 @@ public class CalculationTwoNumbersTests
         Assert.Equal("Вы вышли за максимальный диапазон одного из аргументов", actualExeption.Message);
     }
     [Fact]
-    public void AdditionTestsMaxB(de
+    public void AdditionTestsMaxB()
     {
         //Arange
         CalculationTwoNumbers sut = new CalculationTwoNumbers();
