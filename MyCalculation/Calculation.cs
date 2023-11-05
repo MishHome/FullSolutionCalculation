@@ -1,21 +1,9 @@
 ﻿namespace MyCalculation;
 
-public class Calculation
+public abstract class Calculation
 {
-    void Adition() 
-    {
-            
-    }
-    void Substraction()
-    {
-        
-    }
-    void Multiplication() 
-    {
-        
-    }
-    void Division()
-    {
-        
-    }
+    public abstract void Adition();
+    public abstract void Substraction();
+    public abstract void Multiplication();
+    public abstract void Division();
 }
