@@ -2,9 +2,12 @@
 
 public class CalculationTwoNumbers : Calculation
 {
+    int A { get; set; }
+    int B { get; set; }
+    int Result { get; set; }
     public override void Adition()
     {
-        throw new NotImplementedException();
+        Result = A + B;
     }
 
     public override void Division()
