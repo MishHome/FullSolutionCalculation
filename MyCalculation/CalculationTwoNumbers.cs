@@ -2,30 +2,46 @@
 
 public class CalculationTwoNumbers : Calculation
 {
-    public double A { get; set; }
-    public double B { get; set; }
-    public double Result { get; set; }
+    public decimal A { get; set; }
+    public decimal B { get; set; }
+    public decimal Result { get; set; }
     public override void Adition()
     {
-        Result = A + B;
+        if (A >= decimal.MaxValue && B > 0)
+        {
+            throw new ArgumentOutOfRangeException("","Вы вышли за максимальный диапазон одного из аргументов");
+        }
+        else if (A > 0 && B >= decimal.MaxValue)
+        {
+            throw new ArgumentOutOfRangeException("","Вы вышли за максимальный диапазон одного из аргументов");
+        }
+        else
+        {
+            Result = A + B;
+        }
     }
 
     public override void Division()
     {
         if (B == 0)
         {
+            //throw new ArgumentException();
             throw new DivideByZeroException("На ноль делить нельзя");
         }
-        Result = A / B;
+        else
+        {
+            Result = A / B;
+        }
+        
     }
 
     public override void Multiplication()
     {
-        throw new NotImplementedException();
+        Result = A * B;
     }
 
     public override void Substraction()
     {
-        throw new NotImplementedException();
+        Result = A - B;
     }
 }
