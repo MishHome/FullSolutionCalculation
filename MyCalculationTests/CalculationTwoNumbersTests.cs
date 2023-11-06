@@ -49,13 +49,17 @@ public class CalculationTwoNumbersTests
         CalculationTwoNumbers sut = new CalculationTwoNumbers();
         sut.A = x;
         sut.B = y;
-        //Act
 
+        //Act
+        Action action = delegate
+        {
+            sut.Division();
+        };
 
         //Assert
         Assert.Equal(x, sut.A);
         Assert.Equal(y, sut.B);
-        DivideByZeroException actualExeption = Assert.Throws<DivideByZeroException>(()=>sut.Division());
+        var actualExeption = Assert.Throws<DivideByZeroException>(action);
         Assert.Equal("На ноль делить нельзя",actualExeption.Message);
        
     }
@@ -101,7 +105,7 @@ public class CalculationTwoNumbersTests
     }
 
     [Fact]
-    public void AdditionTestsMaxA()
+    public void AdditionTestsOverflow()
     {
         //Arange
         CalculationTwoNumbers sut = new CalculationTwoNumbers();
@@ -109,25 +113,33 @@ public class CalculationTwoNumbersTests
         sut.B = 1;
 
         //Act
-
+        Action action = delegate 
+        { 
+            sut.Adition();
+        };
 
         //Assert
-        ArgumentOutOfRangeException actualExeption = Assert.Throws<ArgumentOutOfRangeException>(() => sut.Adition());
-        Assert.Equal("Вы вышли за максимальный диапазон одного из аргументов", actualExeption.Message);
+        var actualExeption = Assert.Throws<OverflowException>(action);
+        Assert.Equal("Результат вышел за допустимый диапазон", actualExeption.Message);
     }
+
     [Fact]
-    public void AdditionTestsMaxB()
+    public void MultiplicationTestsOverflow()
     {
         //Arange
         CalculationTwoNumbers sut = new CalculationTwoNumbers();
-        sut.A = 1;
-        sut.B = decimal.MaxValue;
+        sut.A = decimal.MaxValue;
+        sut.B = 2;
 
         //Act
-
+        Action action = delegate
+        {
+            sut.Multiplication();
+        };
 
         //Assert
-        ArgumentOutOfRangeException actualExeption = Assert.Throws<ArgumentOutOfRangeException>(() => sut.Adition());
-        Assert.Equal("Вы вышли за максимальный диапазон одного из аргументов", actualExeption.Message);
+        var actualExeption = Assert.Throws<OverflowException>(action);
+        Assert.Equal("Результат вышел за допустимый диапазон", actualExeption.Message);
     }
+
 }

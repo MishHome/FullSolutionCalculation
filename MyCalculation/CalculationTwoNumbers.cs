@@ -7,17 +7,17 @@ public class CalculationTwoNumbers : Calculation
     public decimal Result { get; set; }
     public override void Adition()
     {
-        if (A >= decimal.MaxValue && B > 0)
-        {
-            throw new ArgumentOutOfRangeException("","Вы вышли за максимальный диапазон одного из аргументов");
-        }
-        else if (A > 0 && B >= decimal.MaxValue)
-        {
-            throw new ArgumentOutOfRangeException("","Вы вышли за максимальный диапазон одного из аргументов");
-        }
-        else
+        try
         {
             Result = A + B;
+        }
+        catch (OverflowException)
+        {
+            throw new OverflowException("Результат вышел за допустимый диапазон");
+        }
+        catch(Exception) 
+        { 
+            throw;
         }
     }
 
@@ -25,7 +25,6 @@ public class CalculationTwoNumbers : Calculation
     {
         if (B == 0)
         {
-            //throw new ArgumentException();
             throw new DivideByZeroException("На ноль делить нельзя");
         }
         else
@@ -37,7 +36,15 @@ public class CalculationTwoNumbers : Calculation
 
     public override void Multiplication()
     {
-        Result = A * B;
+        try
+        {
+            Result = A * B;
+        }
+        catch (OverflowException)
+        {
+
+            throw new OverflowException("Результат вышел за допустимый диапазон");
+        }
     }
 
     public override void Substraction()
