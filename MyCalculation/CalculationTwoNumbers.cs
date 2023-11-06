@@ -45,10 +45,26 @@ public class CalculationTwoNumbers : Calculation
 
             throw new OverflowException("Результат вышел за допустимый диапазон");
         }
+        catch (Exception)
+        {
+            throw;
+        }
     }
 
     public override void Substraction()
     {
-        Result = A - B;
+        try
+        {
+            Result = A - B;
+        }
+        catch (OverflowException)
+        {
+
+            throw new OverflowException("Результат вышел за допустимый диапазон");
+        }
+        catch (Exception)
+        {
+            throw;
+        }
     }
 }

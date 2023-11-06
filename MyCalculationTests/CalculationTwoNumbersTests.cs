@@ -142,4 +142,23 @@ public class CalculationTwoNumbersTests
         Assert.Equal("Результат вышел за допустимый диапазон", actualExeption.Message);
     }
 
+    [Fact]
+    public void SubstractionTestsOverflow()
+    {
+        //Arange
+        CalculationTwoNumbers sut = new CalculationTwoNumbers();
+        sut.A = decimal.MinValue;
+        sut.B = 1;
+
+        //Act
+        Action action = delegate
+        {
+            sut.Substraction();
+        };
+
+        //Assert
+        var actualExeption = Assert.Throws<OverflowException>(action);
+        Assert.Equal("Результат вышел за допустимый диапазон", actualExeption.Message);
+    }
+
 }
