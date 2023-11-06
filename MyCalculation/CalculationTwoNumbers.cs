@@ -1,12 +1,12 @@
 ﻿namespace MyCalculation;
 
-public class CalculationTwoNumbers : Calculation
+public class CalculationTwoNumbers : Calculation, IInputHandler
 {
     public decimal A { get; set; }
     public decimal B { get; set; }
-    public decimal Result { get; set; }
+    public decimal Result { get; private set; }
 
-    public override bool CheckStringToValue(string myString)
+    public bool CheckStringToValue(string myString)
     {
         bool result = decimal.TryParse(myString.Trim(), out decimal x);
         return result;
@@ -16,6 +16,10 @@ public class CalculationTwoNumbers : Calculation
     {
         try
         {
+            if ((A == decimal.MaxValue && B > 0) || (A > 0 && B == decimal.MaxValue))
+            {
+                throw new OverflowException("Результат вышел за допустимый диапазон");
+            }
             Result = A + B;
         }
         catch (OverflowException)
@@ -62,6 +66,11 @@ public class CalculationTwoNumbers : Calculation
     {
         try
         {
+            if (A == decimal.MinValue && B > 0)
+            {
+                throw new OverflowException("Результат вышел за допустимый диапазон");
+            }
+
             Result = A - B;
         }
         catch (OverflowException)

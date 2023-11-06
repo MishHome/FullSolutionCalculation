@@ -13,8 +13,4 @@ public partial class Form1 : Form
         label1.Text = "Привет!";
     }
 
-    private void label1_Click(object sender, EventArgs e)
-    {
-
-    }
 }
