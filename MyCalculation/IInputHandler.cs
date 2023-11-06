@@ -2,6 +2,6 @@
 
 public interface IInputHandler
 {
-    bool CheckStringToValue (string value);
+    bool CheckStringToValue (string myString);
 
 }

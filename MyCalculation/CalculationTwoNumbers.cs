@@ -5,6 +5,13 @@ public class CalculationTwoNumbers : Calculation
     public decimal A { get; set; }
     public decimal B { get; set; }
     public decimal Result { get; set; }
+
+    public override bool CheckStringToValue(string myString)
+    {
+        bool result = decimal.TryParse(myString.Trim(), out decimal x);
+        return result;
+    }
+
     public override void Adition()
     {
         try
