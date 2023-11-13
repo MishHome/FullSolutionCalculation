@@ -36,6 +36,7 @@ partial class Form1
         label2 = new Label();
         label3 = new Label();
         labelAnswers = new Label();
+        checkBox1 = new CheckBox();
         SuspendLayout();
         // 
         // button1
@@ -111,11 +112,23 @@ partial class Form1
         labelAnswers.Size = new Size(430, 36);
         labelAnswers.TabIndex = 7;
         // 
+        // checkBox1
+        // 
+        checkBox1.AutoSize = true;
+        checkBox1.Location = new Point(38, 287);
+        checkBox1.Name = "checkBox1";
+        checkBox1.Size = new Size(83, 19);
+        checkBox1.TabIndex = 8;
+        checkBox1.Text = "checkBox1";
+        checkBox1.UseVisualStyleBackColor = true;
+        checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+        // 
         // Form1
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(584, 361);
+        Controls.Add(checkBox1);
         Controls.Add(labelAnswers);
         Controls.Add(label3);
         Controls.Add(label2);
@@ -140,4 +153,5 @@ partial class Form1
     private Label label2;
     private Label label3;
     private Label labelAnswers;
+    private CheckBox checkBox1;
 }

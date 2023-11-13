@@ -5,6 +5,7 @@ namespace MyCalculationForms;
 
 public partial class Form1 : Form
 {
+    bool MyCheck { get; set; } = false;
     public Form1()
     {
         InitializeComponent();
@@ -15,18 +16,45 @@ public partial class Form1 : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-        var selAction = (MyActions)this.comboBox.SelectedItem;
-        var calc = new CalculationTwoNumbers();
-        if (calc.CheckStringToValue(textBox1.Text) && calc.CheckStringToValue(textBox2.Text))
-        {
-            calc.A = decimal.Parse(textBox1.Text);
-            calc.B= decimal.Parse(textBox2.Text);
-        }
-        calc.SelectedAction(selAction);
 
-        labelAnswers.Text = calc.Result.ToString();
+        try
+        {
+            IGetResult result;
+            if (MyCheck)
+            {
+                result = new CalculationTwoNumbers();
+            }
+            else
+            {
+                result = new CalculationStrings();
+            }
+
+            labelAnswers.Text = result.GetResult(textBox1.Text, textBox2.Text, (MyActions)this.comboBox.SelectedItem);
+        }
+        catch (DivideByZeroException ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.StackTrace);
+            //throw;
+        }
+
+
     }
 
-
+    private void checkBox1_CheckedChanged(object sender, EventArgs e)
+    {
+        if(checkBox1.Checked) 
+        { 
+            MyCheck = true;
+        }
+        else
+        {
+            MyCheck = false;
+        }
+    }
 }
 

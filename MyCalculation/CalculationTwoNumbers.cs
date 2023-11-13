@@ -1,6 +1,6 @@
 ﻿namespace MyCalculation;
 
-public class CalculationTwoNumbers : Calculation, IInputHandler
+public class CalculationTwoNumbers : Calculation, IInputHandler, IGetResult
 {
     public decimal A { get; set; }
     public decimal B { get; set; }
@@ -81,6 +81,33 @@ public class CalculationTwoNumbers : Calculation, IInputHandler
         catch (Exception)
         {
             throw;
+        }
+    }
+
+    public string GetResult(string s1, string s2, MyActions action)
+    {
+       
+        if (CheckStringToValue(s1) && CheckStringToValue(s2))
+        {
+
+            A = decimal.Parse(s1);
+            B = decimal.Parse(s2);
+
+
+            try
+            {
+                SelectedAction(action);
+                return Result.ToString();
+            }
+            catch
+            {
+                throw;
+            }
+            
+        }
+        else
+        {
+            return "";
         }
     }
 }
