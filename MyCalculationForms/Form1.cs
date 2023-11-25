@@ -11,8 +11,9 @@ public partial class Form1 : Form
         InitializeComponent();
         comboBox.DataSource = Enum.GetValues(typeof(MyActions));
         comboBox.SelectedIndex = 0;
-    }
 
+        comboBox1.SelectedIndex = 0;
+    }
 
     private void button1_Click(object sender, EventArgs e)
     {
@@ -41,14 +42,12 @@ public partial class Form1 : Form
             MessageBox.Show(ex.StackTrace);
             //throw;
         }
-
-
     }
-
-    private void checkBox1_CheckedChanged(object sender, EventArgs e)
+    
+    private void comboBox1_CheckedChanged(object sender, EventArgs e)
     {
-        if(checkBox1.Checked) 
-        { 
+        if (comboBox1.SelectedIndex == 0)
+        {
             MyCheck = true;
         }
         else
@@ -57,4 +56,3 @@ public partial class Form1 : Form
         }
     }
 }
-

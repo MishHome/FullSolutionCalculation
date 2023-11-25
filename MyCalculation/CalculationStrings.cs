@@ -1,4 +1,6 @@
-﻿namespace MyCalculation
+﻿using System.ComponentModel.Design;
+
+namespace MyCalculation
 {
     public class CalculationStrings : Calculation, IInputHandler, IGetResult
     {
@@ -30,7 +32,10 @@
                 try
                 {
                     SelectedAction(action);
-                    return Result.ToString();
+                    if (A == " " && B == " ")
+                        return "Введите символы";
+                    else
+                        return Result.ToString();
                 }
                 catch
                 {

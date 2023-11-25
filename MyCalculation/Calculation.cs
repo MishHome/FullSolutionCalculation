@@ -3,6 +3,7 @@
 public abstract class Calculation
 {
     public enum MyActions {Сложение, Вычитание, Деление, Умножение }
+    public enum StringOrNumber {Калькулятор_строк , Калькулятор_чисел}
     public abstract void Adition();
     public abstract void Substraction();
     public abstract void Multiplication();
